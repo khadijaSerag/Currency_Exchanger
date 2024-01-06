@@ -1,0 +1,4 @@
+<select id="title" class="form-control w-75" (change)="detectChanges($event)" [disabled]="!isDisable" [(ngModel)]="optionValue">
+    <option selected value="" disabled>{{title}}</option>
+    <option *ngFor="let option of data" [value]="option">{{ option }}</option>
+</select>
