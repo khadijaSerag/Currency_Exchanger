@@ -1,21 +1,29 @@
-
 .converter-container {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  input,
-  select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-  }
-  
-  h2 {
-    text-align: center;
-  }
-  
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.swap {
+  transition: all 0.5s;
+}
+.swap:focus {
+  box-shadow: 0 0 0 0.2rem #fff !important;
+}
+.swap:hover {
+  color: rgb(97, 82, 82);
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  text-align: center;
+}

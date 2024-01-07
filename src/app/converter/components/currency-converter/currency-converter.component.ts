@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CurrenciesConvertService } from '../../services/currencies-convert.service';
-import { Currencies } from 'src/app/models/currencies.interface';
-import { Rates } from 'src/app/models/rates.interface';
+import { Currencies } from 'src/app/converter/models/currencies.interface';
+import { Rates } from 'src/app/converter/models/rates.interface';
 
 @Component({
   selector: 'app-currency-converter',
@@ -9,15 +9,20 @@ import { Rates } from 'src/app/models/rates.interface';
   styleUrls: ['./currency-converter.component.scss'],
 })
 export class CurrencyConverterComponent implements OnInit {
-
   currenciesCode: string[] = [];
 
-  amount: any;
+  amount!: number;
+
   fromCurrency: string = '';
   toCurrency: string = '';
 
   exchangeRates: any;
   convertedAmount: any;
+
+  fromRate!: number;
+  toRate!: number;
+
+  staticAmounts = [1, 10, 50, 100, 1000];
 
   constructor(private currenciesService: CurrenciesConvertService) {}
 
@@ -26,17 +31,26 @@ export class CurrencyConverterComponent implements OnInit {
     this.getRates();
   }
 
-  // fromCurrency selected value
+  // FromCurrency selected value
   convertFromCurrency(event: any) {
     this.fromCurrency = event.target.value;
+    this.fromRate = this.exchangeRates[this.fromCurrency];
+    this.convertedAmount = null;
   }
 
-  // toCurrency selected value
+  // ToCurrency selected value
   convertToCurrency(event: any) {
     this.toCurrency = event.target.value;
+    this.toRate = this.exchangeRates[this.toCurrency];
+    this.convertedAmount = null;
   }
 
-  // get all keys only from api object
+  // Detect the changes in amount input
+  onKeyDown(event: any) {
+    this.convertedAmount = null;
+  }
+
+  // Get all keys only from api object
   getCurrencies() {
     let currencies: Currencies;
     this.currenciesService.getAllCurrencies().subscribe((res: any) => {
@@ -45,7 +59,7 @@ export class CurrencyConverterComponent implements OnInit {
     });
   }
 
-  // get all rates in api latest
+  // Get all rates in api latest
   getRates() {
     let latestRates: Rates;
     this.currenciesService.getConvertedAmount().subscribe((data: any) => {
@@ -54,16 +68,19 @@ export class CurrencyConverterComponent implements OnInit {
     });
   }
 
-  // make the convert Calculation to display the convertedAmount result
+  // Make the convert Calculation to display the convertedAmount result
   onConvertCurrency() {
-    const fromRate = this.exchangeRates[this.fromCurrency];
-    const toRate = this.exchangeRates[this.toCurrency];
-    this.convertedAmount = (this.amount / fromRate) * toRate;
+    this.fromRate = this.exchangeRates[this.fromCurrency];
+    this.toRate = this.exchangeRates[this.toCurrency];
+    this.convertedAmount = (this.amount / this.fromRate) * this.toRate;
   }
 
+  // Make swap button
   swapValues() {
     const temp = this.fromCurrency;
     this.fromCurrency = this.toCurrency;
     this.toCurrency = temp;
+
+    this.onConvertCurrency();
   }
 }

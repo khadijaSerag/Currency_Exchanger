@@ -1,20 +1,20 @@
-<div class="converter-container mt-5">
+<div class="converter-container my-3">
 
     <!-- amount input -->
-    <div class="d-flex justify-content-center align-items-center mt-4 mb-3">
-        <input type="number" min="1" class="form-control w-50" placeholder="Enter the amount" [(ngModel)]="amount"
-            required>
+    <div class="d-flex justify-content-center align-items-center mt-3 mb-3">
+        <input type="staticAmount" min="1" class="form-control w-50" placeholder="Enter the amount" [(ngModel)]="amount"
+            (keydown)="onKeyDown($event)" required>
     </div>
 
     <!-- select options -->
     <div class="row ml-4">
         <div class="col-md-5">
-            <app-select [title]="'From'" [isDisable]="amount" [data]="currenciesCode" 
+            <app-select [title]="'From'" [isDisable]="amount" [data]="currenciesCode"
                 (selectedValue)="convertFromCurrency($event)" [optionValue]="fromCurrency"></app-select>
         </div>
 
         <div class="col-md-2">
-            <button [disabled]="!amount|| !fromCurrency || !toCurrency" (click)="swapValues()" class="btn"><i
+            <button [disabled]="!amount|| !fromCurrency || !toCurrency" (click)="swapValues()" class="btn swap"><i
                     class="fas fa-exchange-alt"></i></button>
         </div>
 
@@ -31,9 +31,24 @@
     </div>
 
     <!-- the result -->
-    <div class="d-flex justify-content-center align-items-center mt-4 mb-3">
+    <div class="d-flex justify-content-center align-items-center mt-3 mb-3">
         <input type="number" class="form-control w-50 mt-2" [value]="convertedAmount" placeholder="The converted amount"
             readonly>
         <button class="btn btn-dark ml-2" [disabled]="!amount">Details</button>
     </div>
+
+
+    <!-- List showing -->
+    <div class="row" *ngIf="fromCurrency && toCurrency">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <app-table [header1]="fromCurrency" [header2]="toCurrency" [data]="staticAmounts" [devideValue]="fromRate"
+                [muliValue]="toRate"></app-table>
+        </div>
+
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <app-table [header1]="toCurrency" [header2]="fromCurrency" [data]="staticAmounts" [devideValue]="toRate"
+                [muliValue]="fromRate"></app-table>
+        </div>
+    </div>
+    
 </div>
