@@ -29,7 +29,7 @@ export class CurrenciesConvertService {
     return this.http.get(environment.baseUrl + 'symbols', { params });
   }
 
-  getConvertedAmount() {
+  getLatestRates() {
     let params = this.paramsKey;
     return this.http.get(environment.baseUrl + 'latest', { params });
   }

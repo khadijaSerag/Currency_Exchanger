@@ -86,7 +86,7 @@ export class CurrencyConverterComponent implements OnInit {
   // Get all rates in api latest to use in OnConvertCurrency method(calculate the convertedAmount value)
   getRates() {
     let latestRates: Rates;
-    this.currenciesService.getConvertedAmount().subscribe((data: any) => {
+    this.currenciesService.getLatestRates().subscribe((data: any) => {
       latestRates = data;
       this.exchangeRates = latestRates.rates;
     });
