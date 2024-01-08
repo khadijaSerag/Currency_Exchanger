@@ -6,7 +6,18 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class CurrenciesConvertService {
-  accessKey: string = '80c5bf558cf48709917289fce97736bd';
+  amountValue!: number;
+  fromValue!: string;
+  toValue!: string;
+  convertedAmountValue!: number;
+
+  fromKey!: string;
+  toKey!: string;
+
+  fromRateValue!: number;
+  toRateValue!: number;
+
+  accessKey: string = 'c256efbfdb9eb9d47f643a7a87bc76ee';
   paramsKey = new HttpParams();
 
   constructor(private http: HttpClient) {
@@ -18,7 +29,7 @@ export class CurrenciesConvertService {
     return this.http.get(environment.baseUrl + 'symbols', { params });
   }
 
-  getConvertedAmount(){
+  getConvertedAmount() {
     let params = this.paramsKey;
     return this.http.get(environment.baseUrl + 'latest', { params });
   }

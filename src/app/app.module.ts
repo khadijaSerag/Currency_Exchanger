@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ConverterComponent } from './converter/converter.component';
 import { SharedModule } from "./shared/shared.module";
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
     declarations: [
@@ -17,6 +18,7 @@ import { SharedModule } from "./shared/shared.module";
         HeaderComponent,
         CurrencyConverterComponent,
         ConverterComponent,
+        DetailsComponent,
     ],
     providers: [],
     bootstrap: [AppComponent],

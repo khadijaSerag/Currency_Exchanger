@@ -10,7 +10,7 @@ export class SelectComponent {
   @Input() title: string = '';
   @Input() data: any[] = [];
   @Output() selectedValue = new EventEmitter();
-  @Input() optionValue: string = '';
+  @Input() optionValue!: string ;
 
   detectChanges(event: any) {
     this.selectedValue.emit(event);
