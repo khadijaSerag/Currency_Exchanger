@@ -33,4 +33,9 @@ export class CurrenciesConvertService {
     let params = this.paramsKey;
     return this.http.get(environment.baseUrl + 'latest', { params });
   }
+
+  getAllHistoricalRates(date: string) {
+    let params = this.paramsKey;
+    return this.http.get(environment.baseUrl + date, { params });
+  }
 }

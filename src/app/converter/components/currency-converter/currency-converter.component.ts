@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CurrenciesConvertService } from '../../services/currencies-convert.service';
+import { CurrenciesConvertService } from '../../../shared/services/currencies-convert.service';
 import { Currencies } from 'src/app/converter/models/currencies.interface';
 import { Rates } from 'src/app/converter/models/rates.interface';
 
