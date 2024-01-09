@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrenciesConvertService } from '../shared/services/currencies-convert.service';
-import { Rates } from '../converter/models/rates.interface';
+import { Rates } from '../shared/models/rates.interface';
 
 @Component({
   selector: 'app-details',

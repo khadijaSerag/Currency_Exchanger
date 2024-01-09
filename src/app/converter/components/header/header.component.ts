@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CurrenciesConvertService } from '../../../shared/services/currencies-convert.service';
-import { Rates } from '../../models/rates.interface';
+import { Rates } from '../../../shared/models/rates.interface';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
