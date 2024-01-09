@@ -11,13 +11,14 @@
 </div>
 
 <!-- Select options -->
-<div class="row ml-4">
+<div class="row">
+
     <div class="col-md-5">
         <app-select [title]="'From'" [isDisable]="amount && isHome" [data]="currenciesCode"
             (selectedValue)="onSelectFromCurrency($event)" [optionValue]="fromCurrency"></app-select>
     </div>
 
-    <div class="col-md-2">
+    <div class="col-md-2 d-flex justify-content-center align-items-center">
         <button [disabled]="!amount|| fromCurrency=='From' || toCurrency=='To' || !isHome" (click)="swapValues()"
             class="btn swap"><i class="fas fa-exchange-alt"></i></button>
     </div>
@@ -26,19 +27,21 @@
         <app-select [title]="'To'" [isDisable]="amount && isHome" [data]="currenciesCode"
             (selectedValue)="onSelectToCurrency($event)" [optionValue]="toCurrency"></app-select>
     </div>
+
 </div>
 
+
 <!-- Convert button -->
-<div class="d-flex justify-content-center align-items-center my-2 mr-4">
+<div class="d-flex justify-content-center align-items-center my-3 mr-4">
     <button class="btn btn-success" [disabled]="!amount || fromCurrency === 'From' || toCurrency === 'To' || !isHome"
         (click)="onConvertCurrency()">Convert</button>
 </div>
 
 <!-- The converted amount display -->
 <div class="d-flex justify-content-center align-items-center mt-2 mb-3">
-    <input type="number" class="form-control w-50 mt-2" [value]="convertedAmount" placeholder="Click Convert" readonly
+    <input type="number" class="form-control w-50 mt-2 ml-2" [value]="convertedAmount" placeholder="Click Convert" readonly
         [disabled]="!isHome">
-    <button class="btn btn-dark ml-2" *ngIf="isHome" [disabled]="!amount || fromCurrency=='From' || toCurrency=='To'"
+    <button class="btn btn-dark detail" *ngIf="isHome" [disabled]="!amount || fromCurrency=='From' || toCurrency=='To'"
         routerLink="/details">Details</button>
 </div>
 

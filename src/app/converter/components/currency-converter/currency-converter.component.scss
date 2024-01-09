@@ -1,5 +1,5 @@
-
 .swap {
+  border: none;
   transition: all 0.5s;
 }
 .swap:focus {
@@ -20,4 +20,8 @@ select {
 
 h2 {
   text-align: center;
+}
+
+.detail {
+  margin-left: 10px;
 }
