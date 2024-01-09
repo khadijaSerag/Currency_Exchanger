@@ -113,8 +113,10 @@ export class CurrencyConverterComponent implements OnInit {
   // Update shared service values to be used in navigation between pages(CurrencyConverter & Details components)
   private updateServiceValues() {
     this.currenciesService.fromKey = this.fromCurrency;
-    this.currenciesService.fromValue = this.currencies.symbols[this.fromCurrency];
-    this.currenciesService.fromRateValue = this.exchangeRates[this.fromCurrency];
+    this.currenciesService.fromValue =
+      this.currencies.symbols[this.fromCurrency];
+    this.currenciesService.fromRateValue =
+      this.exchangeRates[this.fromCurrency];
 
     this.currenciesService.toKey = this.toCurrency;
     this.currenciesService.toValue = this.currencies.symbols[this.toCurrency];

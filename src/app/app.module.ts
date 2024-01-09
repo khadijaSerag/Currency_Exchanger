@@ -9,25 +9,32 @@ import { CurrencyConverterComponent } from './converter/components/currency-conv
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ConverterComponent } from './converter/converter.component';
-import { SharedModule } from "./shared/shared.module";
+import { SharedModule } from './shared/shared.module';
 import { DetailsComponent } from './details/details.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Import BrowserAnimationsModule
+import { ToastrModule } from 'ngx-toastr'; // Import ToastrModule
+
 @NgModule({
-    declarations: [
-        AppComponent,
-        HeaderComponent,
-        CurrencyConverterComponent,
-        ConverterComponent,
-        DetailsComponent,
-    ],
-    providers: [],
-    bootstrap: [AppComponent],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        SharedModule
-    ]
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    CurrencyConverterComponent,
+    ConverterComponent,
+    DetailsComponent,
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    SharedModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-left',
+    }),
+  ],
 })
-export class AppModule { }
+export class AppModule {}

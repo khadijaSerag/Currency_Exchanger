@@ -17,7 +17,7 @@ export class CurrenciesConvertService {
   fromRateValue!: number;
   toRateValue!: number;
 
-  accessKey: string = 'c256efbfdb9eb9d47f643a7a87bc76ee';
+  accessKey: string = '2ef0392559e2842b87140f472d056ad8';
   paramsKey = new HttpParams();
 
   constructor(private http: HttpClient) {

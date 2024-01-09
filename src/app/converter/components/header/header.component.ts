@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CurrenciesConvertService } from '../../services/currencies-convert.service';
 import { Rates } from '../../models/rates.interface';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -14,11 +15,14 @@ export class HeaderComponent implements OnInit {
   updatedFromKey!: string;
   updatedToKey!: string;
 
+  amount!: number;
+
   exchangeRates: any;
 
   constructor(
     private router: Router,
-    private currenciesConvertService: CurrenciesConvertService
+    private currenciesConvertService: CurrenciesConvertService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -52,7 +56,14 @@ export class HeaderComponent implements OnInit {
   }
 
   routerNav() {
-    this.router.navigate(['/details']);
+    this.amount = this.currenciesConvertService.amountValue;
+
+    if (this.amount) {
+      this.router.navigate(['/details']);
+    } else {
+      this.toastr.warning('Please enter the amount value firstly!', 'Warning');
+    }
+
   }
 
   updateServiceValues() {

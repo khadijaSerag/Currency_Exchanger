@@ -2,14 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SelectComponent } from './select/select.component';
 import { FormsModule } from '@angular/forms';
-import { TableComponent } from './table/table.component';
+import { NumbersTableComponent } from '../converter/components/numbersTable/numbersTable.component';
+import { CurrenciesTableComponent } from './currencies-table/currencies-table.component';
 
 
 
 @NgModule({
   declarations: [
     SelectComponent,
-    TableComponent
+    NumbersTableComponent,
+    CurrenciesTableComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { TableComponent } from './table/table.component';
   ],
   exports:[
     SelectComponent,
-    TableComponent
+    NumbersTableComponent,
+    CurrenciesTableComponent
   ]
 })
 export class SharedModule { }
