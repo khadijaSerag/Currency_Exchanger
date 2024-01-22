@@ -15,11 +15,11 @@ export class CurrencyConverterComponent implements OnInit {
 
   @Input() fromCurrency!: string;
   @Input() toCurrency!: string;
+  @Input() convertedAmount: any;
 
   @Input() isHome: boolean = true;
 
   exchangeRates: any;
-  @Input() convertedAmount: any;
 
   fromRate!: number;
   toRate!: number;
@@ -33,6 +33,10 @@ export class CurrencyConverterComponent implements OnInit {
   ngOnInit() {
     this.getCurrencies();
     this.getRates();
+
+    // when click on button backToHome continue save the same data that in datails to show in home again
+    // save the data to show [ from details(parent) to home (child) ] so that I used @Input
+    // but when I want to save and show data from [ home (child) to datails (parent) ] i use the variables in service
     if (this.isHome) {
       this.fromCurrency = this.currenciesService.fromKey
         ? this.currenciesService.fromKey
@@ -75,8 +79,8 @@ export class CurrencyConverterComponent implements OnInit {
   getCurrencies() {
     this.currenciesService.getAllCurrencies().subscribe((res: any) => {
       this.currencies = res;
-      if (this.isHome) {
-        this.currenciesCode = Object.keys(this.currencies.symbols);
+      if (this.isHome) { // return array
+        this.currenciesCode = Object.keys(this.currencies.symbols); 
       } else {
         this.currenciesCode = Object.values(this.currencies.symbols);
       }
@@ -114,13 +118,13 @@ export class CurrencyConverterComponent implements OnInit {
   private updateServiceValues() {
     this.currenciesService.fromKey = this.fromCurrency;
     this.currenciesService.fromValue =
-      this.currencies.symbols[this.fromCurrency];
+      this.currencies.symbols[this.fromCurrency]; // return one value
     this.currenciesService.fromRateValue =
-      this.exchangeRates[this.fromCurrency];
+      this.exchangeRates[this.fromCurrency]; // return one rate
 
     this.currenciesService.toKey = this.toCurrency;
-    this.currenciesService.toValue = this.currencies.symbols[this.toCurrency];
-    this.currenciesService.toRateValue = this.exchangeRates[this.toCurrency];
+    this.currenciesService.toValue = this.currencies.symbols[this.toCurrency]; // return one value
+    this.currenciesService.toRateValue = this.exchangeRates[this.toCurrency]; // return one rate
 
     this.currenciesService.convertedAmountValue = this.convertedAmount;
   }
